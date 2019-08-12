@@ -84,6 +84,7 @@ class LinkedIn(OAuthBackend):
         resp = self.get(url, **kwargs)
         resp.raise_for_status()
 
+        emails = []
         for el in resp.json().get('elements', []):
             email = el.get('handle~', {}).get('emailAddress')
             if email is not None:
